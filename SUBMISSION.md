@@ -5,7 +5,7 @@ Light Tool Library metadata - paste into the **Add Tool** form.
 | Field | Value |
 |---|---|
 | **Title** | Zork II |
-| **GitHub Repo** | https://github.com/<you>/zork2-light |
+| **GitHub Repo** | https://github.com/chairmanmortimort/Zork-II |
 | **Description** | Zork II (1982), the classic text adventure continues. Venture from the Great Underground Empire into the Wizard of Frobozz's domain. Solve puzzles and test your wits. |
 | **Tags** | Games *(provisional)* |
 
