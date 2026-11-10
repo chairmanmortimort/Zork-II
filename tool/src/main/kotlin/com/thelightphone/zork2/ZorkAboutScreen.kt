@@ -44,7 +44,7 @@ class ZorkAboutScreen(
                         )
                     }
                     LightText(
-                        text = "About",
+                        text = AboutText.TITLE,
                         variant = LightTextVariant.Paragraph,
                         modifier = Modifier
                             .weight(1f)
@@ -64,21 +64,15 @@ class ZorkAboutScreen(
 
                     sectionHeader("Story")
                     LightText(
-                        text = """Zork II: The Wizard of Frobozz
+                        text = AboutText.STORY,
+                        variant = LightTextVariant.Copy,
+                        align = TextAlign.Left,
+                    )
+                    Spacer(Modifier.height(1f.gridUnitsAsDp()))
 
-After your success as the Ruler of the Great Underground Empire, you were
-appointed Dungeon Master by the Grand Duke of Frobozz.
-
-Strange things are happening in the Great Underground Empire.  As "Dungeon
-Master," you are charged with seeing that the proper order of things is
-maintained.
-
-Revolutionary forces threaten the very existence of the Empire.
-Something must be done immediately.
-
-Your mouse is gone.
-
-Happy adventuring!""",
+                    sectionHeader("Attribution")
+                    LightText(
+                        text = AboutText.ATTRIBUTION,
                         variant = LightTextVariant.Copy,
                         align = TextAlign.Left,
                     )
@@ -117,7 +111,7 @@ Tap the Saves menu to browse, load, or delete individual slots.""",
                 }
 
                 LightText(
-                    text = "Version 1.0",
+                    text = "Version ${AboutText.VERSION}",
                     variant = LightTextVariant.Fine,
                     align = TextAlign.Center,
                     modifier = Modifier

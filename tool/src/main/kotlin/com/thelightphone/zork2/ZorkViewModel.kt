@@ -36,7 +36,10 @@ class ZorkViewModel(private val saveDir: File) : LightViewModel<Unit>() {
     private val _state = MutableStateFlow(
         ZorkState(
             transcript = roomDescription,
-            statusLine = engine.statusLine(),
+            statusLine = run {
+                engine.updateStatusLine()
+                engine.statusLine()
+            },
             input = "",
             lastSavedSlot = 0,
         ),
@@ -61,6 +64,7 @@ class ZorkViewModel(private val saveDir: File) : LightViewModel<Unit>() {
         }
 
         engine.submit(cmd)
+        engine.updateStatusLine()
         val response = engine.drainOutput()
         val next = "> $cmd\n$response\n\n${_state.value.transcript}"
         _state.value = _state.value.copy(
@@ -73,6 +77,7 @@ class ZorkViewModel(private val saveDir: File) : LightViewModel<Unit>() {
     /** Load a numbered slot; returns true if it was restored. */
     fun loadSlot(slot: Int): Boolean {
         val transcript = engine.loadSlot(slot) ?: return false
+        engine.updateStatusLine()
         _state.value = _state.value.copy(
             transcript = transcript,
             statusLine = engine.statusLine(),
@@ -98,6 +103,7 @@ class ZorkViewModel(private val saveDir: File) : LightViewModel<Unit>() {
         val intro = engine.drainOutput()
         val split = intro.indexOf("\n\n")
         val room = if (split >= 0) intro.substring(split + 2) else ""
+        engine.updateStatusLine()
         _state.value = ZorkState(
             transcript = room,
             statusLine = engine.statusLine(),
